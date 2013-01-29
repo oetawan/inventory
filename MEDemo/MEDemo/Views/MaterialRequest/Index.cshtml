@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    <style type="text/css">
+        div#keyin-item {
+            padding: 5px;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="metro span12">
+            <div class="k-block">
+                <div class="k-header" style="padding-left: 5px;">Material Request</div>
+                <div id="keyin-item">
+                    <table style="width: 100%;">
+                        <tbody>
+                            <tr>
+                                <td style="width: 20%;">
+                                    <label for="search-item">Item Code</label>
+                                    <input id="item" placeholder="Select item..." />
+                                </td>
+                                <td style="width: 20%;">
+                                    <label for="item-qty">Qty</label>
+                                    <input id="item-qty" />
+                                </td>
+                                <td style="width: 20%;">
+                                    <label for="item-unit">Unit</label>
+                                    <input id="item-unit" />
+                                </td>
+                                <td style="width: 60%;">
+                                    <label for="item-note">Note</label>
+                                    <span class="k-textbox item-note">
+                                        <input type="text" id="item-note" />
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="win-commandlayout navbar-fixed-bottom win-ui-dark">
+    <div class="container">
+        <div class="row">
+            <div class="span6 align-left">
+                <a class="win-command" href="/Home/Index">
+                    <span class="win-commandimage win-commandring">&#x0021;</span>
+                    <span class="win-label">Home</span>
+                </a>
+   
+                <hr class="win-command" />
+   
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#xe03e;</span>
+                    <span class="win-label">Add</span>
+                </button>
+   
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#x0052;</span>
+                    <span class="win-label">Save</span>
+                </button>
+   
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#xe125;</span>
+                    <span class="win-label">Reload</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+@section scripts
+{
+    <script type="text/javascript">
+        function createRandomData(qty) {
+            return [
+                { FirstName: 'John', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Jack', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Mike', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Cristian', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Joko', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Joni', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Jono', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Intan', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Permata', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Anto', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Andi', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Agil', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Cinta', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 },
+                { FirstName: 'Laura', LastName: 'Do', City: 'Batam', Title: 'SE', BirthDate: new Date(2013, 1, 28), Age: 35 }
+            ];
+        }
+        $(document).ready(function () {
+            $("#backbutton").css('visibility', 'visible');
+
+            $("#item").kendoComboBox({
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: [
+                    { text: "Cotton", value: "1" },
+                    { text: "Polyester", value: "2" },
+                    { text: "Cotton/Polyester", value: "3" },
+                    { text: "Rib Knit", value: "4" }
+                ],
+                filter: "contains",
+                suggest: true,
+                index: 1
+            });
+
+            $("#item-qty").kendoNumericTextBox();
+
+            $("#item-unit").kendoComboBox({
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: [
+                    { text: "Pcs", value: "1" }
+                ],
+                filter: "contains",
+                suggest: true,
+                index: 3
+            });
+        });
+    </script>
+}

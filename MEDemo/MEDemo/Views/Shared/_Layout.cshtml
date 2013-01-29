@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @*Styles.Render("~/Content/css")*@
+    @Styles.Render("~/Content/bootmetro")
+    <link rel="stylesheet" href="@Url.Content("~/Content/kendo/kendo.common.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/Content/kendo/kendo.default.min.css")" />
+    @RenderSection("styles", false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header id="nav-bar" class="container-fluid">
+      <div class="row-fluid">
+         <div class="span8">
+            <div id="header-container">
+               <a id="backbutton" class="win-backbutton" href="/Home/Index" style="visibility: hidden"></a>
+               <h3>Company Name</h3>
+                <div class="dropdown">
+                    <a class="header-dropdown dropdown-toggle accent-color" data-toggle="dropdown" href="#">
+                        Start
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Material Request</a></li>
+                      <li><a href="#">Stock Issue</a></li>
+                      <li><a href="#">Purchase Request</a></li>
+                      <li><a href="#">GRN</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Purchase Inquiry</a></li>
+                      <li><a href="#">Purchase Quotation</a></li>
+                      <li><a href="#">Purchase Order</a></li>
+                      <li><a href="#">Supplier Invoice</a></li>
+                      <li class="divider"></li>
+                      <li><a href="/Home/Index">Home</a></li>
+                    </ul>
+                </div>
+            </div>
+         </div>
+         <div id="top-info" class="pull-right">
+         <a href="#" class="pull-left">
+            <div class="top-info-block">
+               <h3>Administrator</h3>
+               <h4>User</h4>
+            </div>
+            <div class="top-info-block">
+               <b class="icon-user"></b>
+            </div>
+         </a>
+         <hr class="separator pull-left"/>
+         <a id="settings" class="pull-left" href="#">
+            <b class="icon-settings"></b>
+         </a>
+      </div>
+    </div>
+    </header>
+    
+    @RenderBody()
+
+    <div id="charms" class="win-ui-dark">
+   
+      <div id="theme-charms-section" class="charms-section">
+         <div class="charms-header">
+            <a href="#" class="close-charms win-command">
+               <span class="win-commandimage win-commandring">&#xe05d;</span>
+            </a>
+            <h2>Settings</h2>
+         </div>
+   
+         <div class="row-fluid">
+            <div class="span12">
+   
+               <form class="">
+                  <label for="win-theme-select">Change theme:</label>
+                  <select id="win-theme-select" class="">
+                     <option value="metro-ui-semilight">Semi-Light</option>
+                     <option value="metro-ui-light">Light</option>
+                     <option value="metro-ui-dark">Dark</option>
+                  </select>
+               </form>
+   
+            </div>
+         </div>
+      </div>
+   
+   </div>
+    
+    <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write("<script src='/scripts/bootmetro-0.6.0/jquery-1.8.2.min.js'>\x3C/script>")</script>
+    @Scripts.Render("~/bundles/bootmetro")
+    <script type="text/javascript" src="@Url.Content("~/Scripts/kendo/kendo.web.min.js")"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
