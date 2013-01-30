@@ -28,6 +28,6 @@ D:\Projects\MitraEnergy\MEDemo\MEDemo\bin\System.Web.Mvc.xml
 D:\Projects\MitraEnergy\MEDemo\MEDemo\bin\System.Web.WebPages.xml
 D:\Projects\MitraEnergy\MEDemo\MEDemo\bin\System.Web.WebPages.Deployment.xml
 D:\Projects\MitraEnergy\MEDemo\MEDemo\bin\System.Web.WebPages.Razor.xml
-D:\Projects\MitraEnergy\MEDemo\MEDemo\obj\Debug\MEDemo.csprojResolveAssemblyReference.cache
 D:\Projects\MitraEnergy\MEDemo\MEDemo\obj\Debug\MEDemo.dll
 D:\Projects\MitraEnergy\MEDemo\MEDemo\obj\Debug\MEDemo.pdb
+D:\Projects\MitraEnergy\MEDemo\MEDemo\obj\Debug\MEDemo.csprojResolveAssemblyReference.cache

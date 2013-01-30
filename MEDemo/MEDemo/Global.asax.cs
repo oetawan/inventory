@@ -24,6 +24,7 @@ namespace MEDemo
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //BundleConfig.RegisterBundles(BundleTable.Bundles);
             BootmetroBundleConfig.RegisterBundles();
+            KendoBundleConfig.RegisterBundles();
         }
     }
 }
