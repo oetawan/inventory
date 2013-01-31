@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/bootmetro")
     <link rel="stylesheet" href="@Url.Content("~/Content/kendo/kendo.common.min.css")">
     <link rel="stylesheet" href="@Url.Content("~/Content/kendo/kendo.default.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Content/bootmetro-0.6.0/css/icomoon.css")">
     @RenderSection("styles", false)
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -24,12 +25,12 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Material Request</a></li>
-                      <li><a href="#">Stock Issue</a></li>
-                      <li><a href="#">Purchase Request</a></li>
-                      <li><a href="#">GRN</a></li>
+                      <li><a href="/MaterialRequest/Index">Material Request</a></li>
+                      <li><a href="/StockIssue/Index">Stock Issue</a></li>
+                      <li><a href="/PurchaseRequest/Index">Purchase Request</a></li>
+                      <li><a href="/GRN/Index">GRN</a></li>
                       <li class="divider"></li>
-                      <li><a href="#">Purchase Inquiry</a></li>
+                      <li><a href="/PurchaseInquiry/Index">Purchase Inquiry</a></li>
                       <li><a href="#">Purchase Quotation</a></li>
                       <li><a href="#">Purchase Order</a></li>
                       <li><a href="#">Supplier Invoice</a></li>
@@ -42,15 +43,17 @@
          <div id="top-info" class="pull-right">
          <a href="#" class="pull-left">
             <div class="top-info-block">
-               <h3>Administrator</h3>
-               <h4>User</h4>
+               <h3>First Name</h3>
+               <h4>Last Name</h4>
             </div>
             <div class="top-info-block">
+               <!--<b aria-hidden="true" data-icon="i">&#x0060;</b>-->
                <b class="icon-user"></b>
             </div>
          </a>
          <hr class="separator pull-left"/>
          <a id="settings" class="pull-left" href="#">
+            <!--<b aria-hidden="true" data-icon="i">&#x0070;</b>-->
             <b class="icon-settings"></b>
          </a>
       </div>

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Material Request";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -38,6 +38,15 @@
         div.request.additem ul {
             list-style-type: none;
         }
+        div.request.additem li {
+            margin-bottom: 10px;
+        }
+        div.inline-box {
+            display: inline-block;
+        }
+        input.text-field, span.text-field, .k-widget.k-combobox {
+            width: 300px;
+        }
     </style>
 }
 
@@ -54,16 +63,16 @@
                         Request
 			        </li>
                     <li>
-                        5 Item(s)
+                        Add item
 			        </li>
                     <li>
-                        Add item
+                        <span id="itemgrid-title">0 Item(s)</span>
                     </li>
 			    </ul>
                 <div class="request">
                     <table><tbody><tr>
                         <td><label for="request-number">Request No</label></td>
-                        <td><span class="k-textbox"><input type="text" id="request-number" name="request-number"/></span></td>
+                        <td><span class="k-textbox text-field"><input type="text" id="request-number" name="request-number"/></span></td>
                     </tr>
                     <tr>
                         <td><label for="request-date">Request Date</label></td>
@@ -71,7 +80,7 @@
                     </tr>
                     <tr>
                         <td><label for="doc-number">Doc Number</label></td>
-                        <td><span class="k-textbox"><input type="text" id="doc-number" name="doc-number" /></span></td>
+                        <td><span class="k-textbox text-field"><input type="text" id="doc-number" name="doc-number"/></span></td>
                     </tr>
                     <tr>
                         <td><label for="require-date">Require Date</label></td>
@@ -80,18 +89,41 @@
                     <tr>
                         <td><label for="requestor">Requestor</label></td>
                         <td><input id="requestor" name="requestor"/></td>
+                    </tr>
+                        <tr>
+                        <td><label for="project">Project</label></td>
+                        <td><input id="project" name="project"/></td>
                     </tr></tbody></table>
-                </div>     
-                <div class="request grid">
-                     <div id="grid-items"></div>
                 </div>
                 <div class="request additem">
                      <ul>
                          <li>
-                            <label for="additem-qty">Qty</label>
-                            <input id="additem-qty" name="additem-qty"/>
+                            <label for="additem-selectitem">Item</label>
+                            <input id="additem-selectitem" name="additem-selectitem" style="width: 300px;" class="text-field"
+                                   data-bind="source: items, value: item"/>
                          </li>
+                         <li>
+                            <div class="inline-box">
+                                <label for="additem-qty">Qty</label>
+                                <input id="additem-qty" name="additem-qty" data-bind="value: qty"/>
+                            </div>
+                             <div class="inline-box">
+                                <label for="additem-unit">Unit</label>
+                                <input id="additem-unit" name="additem-unit" style="width: 100px;"
+                                       data-bind="source: units, value: unit"/>
+                            </div>
+                         </li>
+                         <li>
+                            <label for="additem-note">Note</label>
+                            <textarea class="k-textbox text-field" data-bind="value: note"></textarea>
+                        </li>
+                        <li>
+                            <button class="k-button" data-bind="click: startOver">Add Item</button>
+                        </li>
                      </ul>
+                </div>
+                 <div class="request grid">
+                     <div id="grid-items"></div>
                 </div>
 			</div><!-- tabstrip -->
         </div><!-- metro span12 main -->
@@ -110,7 +142,7 @@
    
                 <button class="win-command">
                     <span class="win-commandimage win-commandring">&#xe03e;</span>
-                    <span class="win-label">Add</span>
+                    <span class="win-label">New</span>
                 </button>
    
                 <button class="win-command">
@@ -119,8 +151,15 @@
                 </button>
    
                 <button class="win-command">
-                    <span class="win-commandimage win-commandring">&#xe125;</span>
-                    <span class="win-label">Reload</span>
+                    <span class="win-commandimage win-commandring">&#xe132;</span>
+                    <span class="win-label">Post</span>
+                </button>
+
+                <hr class="win-command" />
+
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#xe040;</span>
+                    <span class="win-label">Wizard to Issue</span>
                 </button>
             </div>
         </div>
@@ -128,37 +167,58 @@
 </footer>
 @section scripts
 {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/underscore.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/example.js")"></script>
     <script type="text/javascript">
-        function createItemExample() {
-            return [
-                { Index: 1, Code: '001', Name: 'YAMATO CUTTING TORGUE', Qty: 100, Unit: "Pcs", Note: "new item" },
-                { Index: 2, Code: '002', Name: 'YAMATO CUTTING TORGUE NOZZLE', Qty: 200, Unit: "Pcs", Note: "" },
-                { Index: 3, Code: '003', Name: 'YAMATO CUTTING TORGUE', Qty: 300, Unit: "Pcs", Note: "" },
-                { Index: 4, Code: '004', Name: 'PIPE 20"', Qty: 400, Unit: "Pcs", Note: "" },
-                { Index: 5, Code: '005', Name: 'TRANSFORMER 2000KVA 20KV/414VOLT 50HZ', Qty: 500, Unit: "Pcs", Note: "" }
-            ];
-        }
+        var exp,
+            itemViewModel,
+            itemGrid;
 
-        $(function () {
-            $("#backbutton").css('visibility', 'visible');
-
+        function initRequest() {
+            $("#request-date").kendoDatePicker();
+            $("#require-date").kendoDatePicker();
             $("#requestor").kendoComboBox({
                 dataTextField: "text",
                 dataValueField: "value",
-                dataSource: [
-                    { text: "Abet", value: "1" },
-                    { text: "Bayu", value: "2" },
-                    { text: "Oscar", value: "3" },
-                    { text: "Bram", value: "4" }
-                ],
+                dataSource: exp.requestors,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            }).width('300px');
+            $("#project").kendoComboBox({
+                dataTextField: "Name",
+                dataValueField: "Code",
+                dataSource: exp.projects,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            }).width('300px');
+        }
+
+        function initAddItem() {
+            $("#additem-selectitem").kendoComboBox({
+                dataTextField: "Name",
+                dataValueField: "Code",
+                dataSource: exp.products,
                 filter: "contains",
                 suggest: true,
                 index: 1
             });
+            $("#additem-unit").kendoComboBox({
+                dataTextField: "Name",
+                dataValueField: "Code",
+                dataSource: exp.units,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            });
+            $("#additem-qty").kendoNumericTextBox();
+        }
 
-            $("#grid-items").kendoGrid({
+        function initGridItem() {
+            itemGrid = $("#grid-items").kendoGrid({
                 dataSource: {
-                    data: createItemExample(),
+                    data: exp.items,
                     pageSize: 10
                 },
                 groupable: false,
@@ -190,6 +250,40 @@
                     field: "Note"
                 }]
             });
+        }
+
+        function initItemViewModel() {
+            itemViewModel = kendo.observable({
+                items: exp.products,
+                item: "",
+                qty: 0,
+                units: exp.units,
+                unit: '',
+                note: '',
+                startOver: function () {
+                    exp.items.push({
+                        Index: exp.items.length+1,
+                        Code: this.item,
+                        Name: _.find(exp.products, function (p) { return p.Code === this.item }, this ).Name,
+                        Qty: this.qty,
+                        Unit: _.find(exp.units, function (u) { return u.Code === this.unit }, this).Name,
+                        Note: this.note
+                    });
+                    initGridItem();
+                    $("#itemgrid-title").text( exp.items.length + " item(s)");
+                    this.set("item", '');
+                    this.set("qty", 0);
+                    this.set("unit", "");
+                    this.set("note", "");
+                }
+            });
+
+            kendo.bind($("div.request.additem"), itemViewModel);
+        }
+
+        $(function () {
+            exp = examples();
+            $("#backbutton").css('visibility', 'visible');
 
             $("#tabstrip").kendoTabStrip({
                 animation: {
@@ -199,10 +293,10 @@
                 }
             });
 
-            $("#request-date").kendoDatePicker();
-            $("#require-date").kendoDatePicker();
-            $("#select-item").kendoNumericTextBox();
-            $("#additem-qty").kendoNumericTextBox();
+            initRequest();
+            initAddItem();
+            initGridItem();
+            initItemViewModel();
         });
     </script>
 }

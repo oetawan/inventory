@@ -129,8 +129,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GRNController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialRequestController.cs" />
+    <Compile Include="Controllers\PurchaseInquiryController.cs" />
+    <Compile Include="Controllers\PurchaseRequestController.cs" />
+    <Compile Include="Controllers\StockIssueController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,7 +251,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\grn.jpg" />
+    <Content Include="Content\images\purchase1.jpg" />
+    <Content Include="Content\images\quotation.jpg" />
     <Content Include="Content\images\sprite.widgets.png" />
+    <Content Include="Content\images\warehouse1.jpg" />
+    <Content Include="Content\images\warehouse1.png" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\loading-image.gif" />
@@ -449,12 +458,13 @@
     <Content Include="Content\bootmetro-0.6.0\font\opensans-semibold-webfont.eot" />
     <Content Include="Content\bootmetro-0.6.0\font\opensans-semibold-webfont.ttf" />
     <Content Include="Content\bootmetro-0.6.0\font\opensans-semibold-webfont.woff" />
+    <Content Include="Scripts\backbone.js" />
+    <Content Include="Scripts\backbone.min.js" />
     <Content Include="Scripts\bootmetro-0.6.0\README.md" />
     <Content Include="Content\kendo\images\KendoUI.ttf" />
     <Content Include="Content\kendo\images\KendoUI.woff" />
     <None Include="Properties\PublishProfiles\mitrae - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\mitrae - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\bootmetro-0.6.0\bootmetro-charms.js" />
     <Content Include="Scripts\bootmetro-0.6.0\bootmetro.js" />
     <Content Include="Scripts\bootmetro-0.6.0\bootstrap-datepicker.js" />
@@ -478,9 +488,11 @@
     <Content Include="Scripts\bootmetro-0.6.0\mustache.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\example.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Scripts\jquery-1.7.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.7.2.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -918,6 +930,8 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -947,6 +961,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\MaterialRequest\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\StockIssue\Index.cshtml" />
+    <Content Include="Views\PurchaseRequest\Index.cshtml" />
+    <Content Include="Views\GRN\Index.cshtml" />
+    <Content Include="Views\PurchaseInquiry\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

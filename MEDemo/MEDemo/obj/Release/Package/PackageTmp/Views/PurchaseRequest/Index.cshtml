@@ -1,0 +1,321 @@
+﻿@{
+    ViewBag.Title = "Purchase Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles
+{
+    <style type="text/css">
+        #exampleTitle {
+            font: 23px/1.6 arial,helvetica,sans-serif;
+            font-weight: normal;
+            color: #4e4e4e;
+        }
+        hr {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .gridIcon {
+            background-position: 20px 40px;
+        }
+        .exampleIcon {
+            width: 20px;
+            height: 20px;
+            float: left;
+            margin: 8px 11px 0 0;
+            background: no-repeat url(/content/images/sprite.widgets.png);
+            -webkit-transform: translate(0);
+        }
+        #nav-bar {
+            margin-bottom: 10px;
+        }
+        div.request td {
+            padding: 5px 10px 5px 10px;
+        }
+        div.request.grid, div.request.additem {
+            padding: 10px;
+        }
+        div.request.additem ul {
+            list-style-type: none;
+        }
+        div.request.additem li {
+            margin-bottom: 10px;
+        }
+        div.inline-box {
+            display: inline-block;
+        }
+        input.text-field, span.text-field, .k-widget.k-combobox {
+            width: 300px;
+        }
+    </style>
+}
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="metro span12 main">
+            <h1 id="exampleTitle">
+                <span class="exampleIcon gridIcon"></span>
+                <strong>Purchase Request</strong>
+            </h1>
+            <div id="tabstrip">
+			    <ul>
+			        <li class="k-state-active">
+                        Purchase
+			        </li>
+                    <li>
+                        Add item
+			        </li>
+                    <li>
+                        <span id="itemgrid-title">0 Item(s)</span>
+                    </li>
+			    </ul>
+                <div class="request">
+                    <table><tbody><tr>
+                        <td><label for="request-number">PR No</label></td>
+                        <td><span class="k-textbox text-field"><input type="text" id="request-number" name="request-number"/></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="request-date">PR Date</label></td>
+                        <td><input id="request-date" name="request-date" value="1/30/2013" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="doc-number">Document Number</label></td>
+                        <td><span class="k-textbox text-field"><input type="text" id="doc-number" name="doc-number"/></span></td>
+                    </tr>
+                    <tr>
+                        <td><label for="require-date">Require Date</label></td>
+                        <td><input id="require-date" name="require-date" value="1/30/2013" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="requestor">Requestor</label></td>
+                        <td><input id="requestor" name="requestor"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="project">Project</label></td>
+                        <td><input id="project" name="project"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="additem-note">Note</label></td>
+                        <td><textarea class="k-textbox text-field" style="width:300px;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><label for="purchaser">Purchaser</label></td>
+                        <td><input id="purchaser" name="purchaser"/></td>
+                    </tr></tbody></table>
+                </div>
+                <div class="request additem">
+                     <ul>
+                         <li>
+                            <label for="additem-selectitem">Item</label>
+                            <input id="additem-selectitem" name="additem-selectitem" style="width: 300px;" class="text-field"
+                                   data-bind="source: items, value: item"/>
+                         </li>
+                         <li>
+                            <div class="inline-box">
+                                <label for="additem-qty">Qty</label>
+                                <input id="additem-qty" name="additem-qty" data-bind="value: qty"/>
+                            </div>
+                             <div class="inline-box">
+                                <label for="additem-unit">Unit</label>
+                                <input id="additem-unit" name="additem-unit" style="width: 100px;"
+                                       data-bind="source: units, value: unit"/>
+                            </div>
+                         </li>
+                         <li>
+                            <label for="additem-note">Note</label>
+                            <textarea class="k-textbox text-field" data-bind="value: note"></textarea>
+                        </li>
+                        <li>
+                            <button class="k-button" data-bind="click: startOver">Add Item</button>
+                        </li>
+                     </ul>
+                </div>
+                 <div class="request grid">
+                     <div id="grid-items"></div>
+                </div>
+			</div><!-- tabstrip -->
+        </div><!-- metro span12 main -->
+    </div><!-- row-fluid -->
+</div><!-- container-fluid -->
+<footer class="win-commandlayout navbar-fixed-bottom win-ui-dark">
+    <div class="container">
+        <div class="row">
+            <div class="span6 align-left">
+                <a class="win-command" href="/Home/Index">
+                    <span class="win-commandimage win-commandring">&#x0021;</span>
+                    <span class="win-label">Home</span>
+                </a>
+   
+                <hr class="win-command" />
+   
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#xe03e;</span>
+                    <span class="win-label">New</span>
+                </button>
+   
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#x0052;</span>
+                    <span class="win-label">Save</span>
+                </button>
+   
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#xe132;</span>
+                    <span class="win-label">Post</span>
+                </button>
+
+                <hr class="win-command" />
+
+                <button class="win-command">
+                    <span class="win-commandimage win-commandring">&#xe19b;</span>
+                    <span class="win-label">Wizard Inquiry</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/underscore.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/example.js")"></script>
+    <script type="text/javascript">
+        var exp,
+            itemViewModel,
+            itemGrid;
+
+        function initRequest() {
+            $("#request-date").kendoDatePicker();
+            $("#require-date").kendoDatePicker();
+            $("#requestor").kendoComboBox({
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: exp.requestors,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            }).width('300px');
+            $("#project").kendoComboBox({
+                dataTextField: "Name",
+                dataValueField: "Code",
+                dataSource: exp.projects,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            }).width('300px');
+            $("#purchaser").kendoComboBox({
+                dataTextField: "text",
+                dataValueField: "value",
+                dataSource: exp.requestors,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            }).width('300px');
+        }
+
+        function initAddItem() {
+            $("#additem-selectitem").kendoComboBox({
+                dataTextField: "Name",
+                dataValueField: "Code",
+                dataSource: exp.products,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            });
+            $("#additem-unit").kendoComboBox({
+                dataTextField: "Name",
+                dataValueField: "Code",
+                dataSource: exp.units,
+                filter: "contains",
+                suggest: true,
+                index: 1
+            });
+            $("#additem-qty").kendoNumericTextBox();
+        }
+
+        function initGridItem() {
+            itemGrid = $("#grid-items").kendoGrid({
+                dataSource: {
+                    data: exp.items,
+                    pageSize: 10
+                },
+                groupable: false,
+                sortable: true,
+                pageable: {
+                    refresh: true,
+                    pageSizes: true
+                },
+                columns: [{
+                    field: "Index",
+                    width: 30,
+                    title: "No."
+                }, {
+                    field: "Code",
+                    width: 90,
+                    title: "Code"
+                }, {
+                    field: "Name",
+                    width: 200,
+                    title: "Name"
+                }, {
+                    field: "Qty",
+                    width: 70
+                }, {
+                    field: "Unit",
+                    width: 50
+                }, {
+                    width: 200,
+                    field: "Note"
+                }, {
+                    width: 200,
+                    field: "RefNo"
+                }]
+            });
+        }
+
+        function initItemViewModel() {
+            itemViewModel = kendo.observable({
+                items: exp.products,
+                item: "",
+                qty: 0,
+                units: exp.units,
+                unit: '',
+                note: '',
+                startOver: function () {
+                    exp.items.push({
+                        Index: exp.items.length+1,
+                        Code: this.item,
+                        Name: _.find(exp.products, function (p) { return p.Code === this.item }, this ).Name,
+                        Qty: this.qty,
+                        Unit: _.find(exp.units, function (u) { return u.Code === this.unit }, this).Name,
+                        Note: this.note
+                    });
+                    initGridItem();
+                    $("#itemgrid-title").text( exp.items.length + " item(s)");
+                    this.set("item", '');
+                    this.set("qty", 0);
+                    this.set("unit", "");
+                    this.set("note", "");
+                }
+            });
+
+            kendo.bind($("div.request.additem"), itemViewModel);
+        }
+
+        $(function () {
+            exp = examples();
+            $("#backbutton").css('visibility', 'visible');
+
+            $("#tabstrip").kendoTabStrip({
+                animation: {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                }
+            });
+
+            initRequest();
+            initAddItem();
+            initGridItem();
+            initItemViewModel();
+        });
+    </script>
+}

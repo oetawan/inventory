@@ -61,6 +61,6 @@ D:\Projects\inventory\MEDemo\MEDemo\bin\System.Web.Mvc.xml
 D:\Projects\inventory\MEDemo\MEDemo\bin\System.Web.WebPages.xml
 D:\Projects\inventory\MEDemo\MEDemo\bin\System.Web.WebPages.Deployment.xml
 D:\Projects\inventory\MEDemo\MEDemo\bin\System.Web.WebPages.Razor.xml
-D:\Projects\inventory\MEDemo\MEDemo\obj\Debug\MEDemo.csprojResolveAssemblyReference.cache
 D:\Projects\inventory\MEDemo\MEDemo\obj\Debug\MEDemo.dll
 D:\Projects\inventory\MEDemo\MEDemo\obj\Debug\MEDemo.pdb
+D:\Projects\inventory\MEDemo\MEDemo\obj\Debug\MEDemo.csprojResolveAssemblyReference.cache
